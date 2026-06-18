@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<head>
-    <title>Job Application Tracker</title>
-</head>
-<body>
-    <h1>Job Application Tracker</h1>
-    <a href="{{ route('applications.create') }}">Add Applications</a>
-
-    @foreach ($applications as $application )
-    <article>
-        <header>
-            <h3>{{ $application->company_name }}</h3>
-            <p>{{ $application ->role_title }}</p>
-        </header>
-        <a href="{{ route('applications.edit',$application->id) }}">Edit</a>
-    </article>
-    
-    @endforeach
-</body>
+<x-layout>
+    <table>
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($applications as $application)
+                <tr>
+                    <td>
+                        <a href="#">{{ $application->company_name }}</a>
+                    </td>
+                    <td>{{ $application->role_title }}</td>
+                    <td>{{ $application->status }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</x-layout>

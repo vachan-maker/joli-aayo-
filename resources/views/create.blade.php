@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<head>
-    Create Job Application
-</head>
-<body>
-    <h1>Create Job Application</h1>
+<x-layout>
     <form action="{{ route('applications.store') }}" method="post">
         @csrf
         <input type="text" name="company_name" placeholder="Company Name"/>
@@ -24,4 +19,4 @@
         <input type="submit"/>
 
     </form>
-</body>
+</x-layout>

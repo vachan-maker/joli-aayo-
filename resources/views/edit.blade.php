@@ -1,8 +1,4 @@
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
+<x-layout>
             <form action="{{ route('applications.update',$application->id) }}" method="post">
                 @csrf
                 @method('PUT')
@@ -24,5 +20,4 @@
         <input type="submit"/>
 
     </form>
-    </body>
-</html>
+    </x-layout>
