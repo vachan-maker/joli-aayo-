@@ -12,6 +12,7 @@
             <h3>{{ $application->company_name }}</h3>
             <p>{{ $application ->role_title }}</p>
         </header>
+        <a href="{{ route('applications.edit',$application->id) }}">Edit</a>
     </article>
     
     @endforeach
