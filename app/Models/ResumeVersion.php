@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ResumeVersion extends Model
 {
     protected $fillable = [
-        'user-id',
         'label',
         'file_path',
         'created_at',

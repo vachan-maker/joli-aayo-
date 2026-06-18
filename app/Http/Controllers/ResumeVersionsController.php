@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\ResumeVersion;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,17 @@ class ResumeVersionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(
+            [
+                'label'=>'string|max:2048|min:5|required',
+                'file' => 'required|file|mimes:pdf|max:4096'
+            ]
+        );
+        $path = $validated['file']->store('resumes'); //generate path and store it in the storage/app/resumees folder
+        ResumeVersion::create([
+            'label'=> $validated['label'],
+            'file_path'=>$path
+        ]);
     }
 
     /**
