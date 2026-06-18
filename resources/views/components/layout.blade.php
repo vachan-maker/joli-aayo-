@@ -25,12 +25,15 @@
                         
                     @endif
                 </li>
+                @auth
                 <li>
                     <a href="{{ route('resume.index') }}">Resume</a>
                 </li>
+               
                 <li>
                     <a href="/profile">Profile</a>
                 </li>
+                @endauth
             </ul>
         </nav>
     </header>
