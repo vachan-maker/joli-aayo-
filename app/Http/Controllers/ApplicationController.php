@@ -87,8 +87,9 @@ class ApplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Application $application)
     {
-        //
+        Application::destroy($application);
+        return redirect() -> route('applications.index');
     }
 }
