@@ -41,4 +41,13 @@ class AuthController extends Controller
         'email' => 'Invalid credentials',
     ]);
     }
+    public function logout(Request $request) {
+        Auth::logout();
+        //invaldate the session
+        $request->session()->invalidate();
+    //regenerate csrf token
+        $request->session()->regenerateToken();
+
+        return redirect()->route('applications.index');
+    }
 }
