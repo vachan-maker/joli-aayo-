@@ -12,7 +12,9 @@
 
     <header>
         <nav>
+            <a href="{{ route('applications.index') }}">
             <h1>Joli aayo?</h1>
+            </a>
             <ul>
                 <li>
                     <a href="{{ route('applications.create') }}">Add Application</a>

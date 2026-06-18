@@ -11,7 +11,7 @@
             @foreach ($applications as $application)
                 <tr>
                     <td>
-                        <a href="#">{{ $application->company_name }}</a>
+                        <a href="{{ route('applications.show',$application->id) }}">{{ $application->company_name }}</a>
                     </td>
                     <td>{{ $application->role_title }}</td>
                     <td>{{ $application->status }}</td>
