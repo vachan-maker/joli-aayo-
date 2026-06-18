@@ -20,7 +20,6 @@ class ResumeVersionsController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**

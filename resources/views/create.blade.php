@@ -5,6 +5,7 @@
 <body>
     <h1>Create Job Application</h1>
     <form action="{{ route('applications.store') }}" method="post">
+        @csrf
         <input type="text" name="company_name" placeholder="Company Name"/>
         <input type="text" name="role_title" placeholder="Role Title"/>
         <select>

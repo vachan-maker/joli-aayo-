@@ -3,7 +3,9 @@
         <title></title>
     </head>
     <body>
-            <form action="{{ route('applications.store') }}" method="post">
+            <form action="{{ route('applications.update',$application->id) }}" method="post">
+                @csrf
+                @method('PUT')
         <input type="text" name="company_name" placeholder="Company Name" value="{{ old('company_name', $application->company_name) }}"/>
         <input type="text" name="role_title" placeholder="Role Title" value="{{ old('company_name', $application->role_title) }}"/>
         <select>
