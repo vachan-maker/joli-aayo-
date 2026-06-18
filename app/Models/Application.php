@@ -18,5 +18,5 @@ class Application extends Model
         'updated_at'
     ];
 
-    
+
 }
