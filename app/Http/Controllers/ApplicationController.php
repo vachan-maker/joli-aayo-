@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Enums\ApplicationStatus;
+use Illuminate\Validation\Rules\Enum;
 class ApplicationController extends Controller
 {
     /**
@@ -36,7 +37,6 @@ class ApplicationController extends Controller
                 'email'=> 'email|nullable',
                 'source'=>'min:1|max:255',
                 "date_applied"=>'required|date',
-                'required', new Enum(ApplicationStatus::class)
             ]
         );
 
