@@ -1,6 +1,16 @@
 <x-layout>
     <form action="{{ route('applications.store') }}" method="post">
         @csrf
+                @if ($errors->any())
+        <aside>
+            <strong>Please correct the errors below:</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </aside>
+    @endif
         <input type="text" name="company_name" placeholder="Company Name"/>
         <input type="text" name="role_title" placeholder="Role Title"/>
         <select>
