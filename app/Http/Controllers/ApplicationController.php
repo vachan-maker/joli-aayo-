@@ -41,7 +41,7 @@ class ApplicationController extends Controller
         );
 
         Application::create($validated);
-        return view('applications.index');
+        return redirect()->route('applications.index');
     }
 
     /**
