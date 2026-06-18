@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function() {
     return view('welcome');
 });
-Route::resource('applications.index',ApplicationController::class);
+Route::resource('applications',ApplicationController::class);
