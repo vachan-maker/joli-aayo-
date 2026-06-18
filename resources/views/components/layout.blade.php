@@ -17,7 +17,16 @@
             </a>
             <ul>
                 <li>
-                    <a href="{{ route('applications.create') }}">Add Application</a>
+                    @if (request()->routeIs('applications.*'))
+                        <a href="{{ route('applications.create') }}">Add Application</a>
+                    @endif
+                    @if (request()->routeIs('resume.*'))
+                        <a href="{{ route('resume.create') }}">Add Resume</a>
+                        
+                    @endif
+                </li>
+                <li>
+                    <a href="{{ route('resume.index') }}">Resume</a>
                 </li>
                 <li>
                     <a href="/profile">Profile</a>
