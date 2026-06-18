@@ -5,7 +5,8 @@
             @csrf
             <input type="email" name="email" placeholder="email"/>
             <input type="password" name="password" placeholder="password"/>
-            <input type="submit"/>
+            <input type="submit" value="Log In"/>
+            <a href="{{ route('register_account') }}"><input type="button" value="Register" class="outline"></input></a>
         </form>
     </article>
 </x-layout>
