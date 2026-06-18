@@ -13,7 +13,8 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $applications = Application::all();
+        return view('index',compact('applications'));
     }
 
     /**
