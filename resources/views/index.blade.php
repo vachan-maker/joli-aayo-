@@ -4,4 +4,5 @@
 </head>
 <body>
     <h1>Job Application Tracker</h1>
+    <a href="{{ route('applications.create') }}">Add Applications</a>
 </body>
