@@ -89,7 +89,7 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
-        Application::destroy($application);
+        $application->delete();
         return redirect() -> route('applications.index');
     }
 }

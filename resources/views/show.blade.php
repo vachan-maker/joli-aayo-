@@ -41,6 +41,11 @@
 
         <footer>
             <a href="{{ route('applications.edit', $application) }}">Edit Details</a>
+            <form action="{{ route('applications.destroy', $application->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Delete"/>
+            </form>
         </footer>
     </article>
 </x-layout>
