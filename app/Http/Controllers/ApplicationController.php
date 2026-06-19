@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreApplicationRequest;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Enums\ApplicationStatus;
@@ -37,20 +38,12 @@ class ApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreApplicationRequest $request)
     {
         // 3. Enforce create policy here as well before saving data
         Gate::authorize('create', Application::class);
 
-        $validated = $request->validate([
-            'company_name' => 'required|max:255|min:1|string',
-            'role_title'   => 'required|max:255|min:1|string',
-            'job_url'          => 'url|nullable|max:2048',
-            'email'        => 'email|nullable',
-            'source'       => 'min:1|max:255',
-            'date_applied' => 'required|date',
-        ]);
-
+        $validated=$request->validated();
         // Add user_id to the table via relationship
         $request->user()->applications()->create($validated);
         return redirect()->route('applications.index');
@@ -81,21 +74,12 @@ class ApplicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Application $application)
+    public function update(StoreApplicationRequest $request, Application $application)
     {
         // 6. Enforce update policy before processing changes
         Gate::authorize('update', $application);
 
-        $validated = $request->validate([
-            'company_name' => 'required|max:255|min:1|string',
-            'role_title'   => 'required|max:255|min:1|string',
-            'job_url'          => 'url|nullable|max:2048',
-            'email'        => 'email|nullable',
-            'source'       => 'min:1|max:255',
-            'date_applied' => 'required|date',
-        ]);
-
-        $application->update($validated);
+        $application->update($request->validated());
 
         return redirect()->route('applications.index');
     }

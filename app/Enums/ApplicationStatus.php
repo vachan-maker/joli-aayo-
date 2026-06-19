@@ -13,4 +13,6 @@ enum ApplicationStatus: string
     case GF = 'gd';
 
     case TEST = 'test/aptitude';
+
+    CASE NORESPONSE = 'no response';
 }
