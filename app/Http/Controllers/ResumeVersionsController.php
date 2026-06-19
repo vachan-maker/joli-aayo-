@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\ResumeVersion;
 use Illuminate\Http\Request;
-
+use Storage;
 class ResumeVersionsController extends Controller
 {
     /**
@@ -73,6 +73,7 @@ class ResumeVersionsController extends Controller
      */
     public function destroy(ResumeVersion $resume)
     {
+        Storage::delete($resume->file_path);
         $resume->delete();
         return redirect() -> route('resume.index');
     }
