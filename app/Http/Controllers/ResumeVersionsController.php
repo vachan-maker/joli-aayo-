@@ -42,6 +42,8 @@ class ResumeVersionsController extends Controller
             'label'=> $validated['label'],
             'file_path'=>$path
         ]);
+
+        return redirect()->route('resume.index');
     }
 
     /**
