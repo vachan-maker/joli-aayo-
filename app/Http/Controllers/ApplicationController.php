@@ -11,9 +11,11 @@ class ApplicationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $applications = Application::all();
+
+        //only view the applications of that logged in user
+        $applications = $request->user()->applications()->get();
         return view('index',compact('applications'));
     }
 
@@ -41,6 +43,7 @@ class ApplicationController extends Controller
             ]
         );
 
+        //add user_id to the table
         $request->user()->applications()->create($validated);
         return redirect()->route('applications.index');
     }
