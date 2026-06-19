@@ -22,7 +22,7 @@
             <option value="gd">Group Discussion</option>
             <option value="test/aptitude">Test</option>
         </select>
-        <input type="date" name="date_applied"/>
+        <input type="date" name="date_applied" max="{{ date('Y-m-d') }}"/>
         <input type="url" name="job_url" placeholder="job-url"/>
         <input type="email" name="email" placeholder="email"/>
         <input type="string" name="source" placeholder="source"/>
