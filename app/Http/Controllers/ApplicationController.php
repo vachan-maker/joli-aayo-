@@ -45,7 +45,7 @@ class ApplicationController extends Controller
         $validated = $request->validate([
             'company_name' => 'required|max:255|min:1|string',
             'role_title'   => 'required|max:255|min:1|string',
-            'url'          => 'url|nullable|max:2048',
+            'job_url'          => 'url|nullable|max:2048',
             'email'        => 'email|nullable',
             'source'       => 'min:1|max:255',
             'date_applied' => 'required|date',

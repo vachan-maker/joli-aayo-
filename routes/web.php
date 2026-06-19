@@ -12,7 +12,7 @@ Route::get('/register',[AuthController::class,'index'])->name('register_account'
 Route::post('/register',[AuthController::class, 'register'])->name('register_account.store');
 Route::get('/login',[AuthController::class,'loginPage'])->name('login.page');
 Route::post('/login',[AuthController::class,'login'])->name('login');
-
+Route::redirect('/','applications');
 
 //this protects the route so only logged in users can use the page
 Route::middleware(['auth'])->group(function() {
