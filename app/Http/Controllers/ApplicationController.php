@@ -6,6 +6,8 @@ use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Enums\ApplicationStatus;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Support\Facades\Gate;
+
 class ApplicationController extends Controller
 {
     /**
@@ -13,10 +15,12 @@ class ApplicationController extends Controller
      */
     public function index(Request $request)
     {
+        // 1. Enforce viewAny policy
+        Gate::authorize('viewAny', Application::class);
 
-        //only view the applications of that logged in user
+        // Only view the applications of that logged in user
         $applications = $request->user()->applications()->get();
-        return view('index',compact('applications'));
+        return view('index', compact('applications'));
     }
 
     /**
@@ -24,6 +28,9 @@ class ApplicationController extends Controller
      */
     public function create()
     {
+        // 2. Enforce create policy (Pass the class string, not an instance)
+        Gate::authorize('create', Application::class);
+
         return view('create');
     }
 
@@ -32,18 +39,19 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate(
-            [
-                'company_name'=>'required|max:255|min:1|string',
-                'role_title'=>'required|max:255|min:1|string',
-                'url'=>'url|nullable|max:2048',
-                'email'=> 'email|nullable',
-                'source'=>'min:1|max:255',
-                "date_applied"=>'required|date',
-            ]
-        );
+        // 3. Enforce create policy here as well before saving data
+        Gate::authorize('create', Application::class);
 
-        //add user_id to the table
+        $validated = $request->validate([
+            'company_name' => 'required|max:255|min:1|string',
+            'role_title'   => 'required|max:255|min:1|string',
+            'url'          => 'url|nullable|max:2048',
+            'email'        => 'email|nullable',
+            'source'       => 'min:1|max:255',
+            'date_applied' => 'required|date',
+        ]);
+
+        // Add user_id to the table via relationship
         $request->user()->applications()->create($validated);
         return redirect()->route('applications.index');
     }
@@ -53,7 +61,10 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
-        return view('show',compact('application'));
+        // 4. Enforce view policy on this specific application instance
+        Gate::authorize('view', $application);
+
+        return view('show', compact('application'));
     }
 
     /**
@@ -61,30 +72,32 @@ class ApplicationController extends Controller
      */
     public function edit(Application $application)
     {
-        return view('edit',compact('application'));
+        // 5. Enforce update policy before showing the edit form
+        Gate::authorize('update', $application);
+
+        return view('edit', compact('application'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Application $application)
+    public function update(Request $request, Application $application)
     {
-                $validated = $request->validate(
-            [
-                'company_name'=>'required|max:255|min:1|string',
-                'role_title'=>'required|max:255|min:1|string',
-                'url'=>'url|nullable|max:2048',
-                'email'=> 'email|nullable',
-                'source'=>'min:1|max:255',
-                "date_applied"=>'required|date',
-            ]
-        );
+        // 6. Enforce update policy before processing changes
+        Gate::authorize('update', $application);
+
+        $validated = $request->validate([
+            'company_name' => 'required|max:255|min:1|string',
+            'role_title'   => 'required|max:255|min:1|string',
+            'url'          => 'url|nullable|max:2048',
+            'email'        => 'email|nullable',
+            'source'       => 'min:1|max:255',
+            'date_applied' => 'required|date',
+        ]);
 
         $application->update($validated);
 
-        return redirect() -> route('applications.index');
-
-        
+        return redirect()->route('applications.index');
     }
 
     /**
@@ -92,7 +105,10 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
+        // 7. Enforce delete policy
+        Gate::authorize('delete', $application);
+
         $application->delete();
-        return redirect() -> route('applications.index');
+        return redirect()->route('applications.index');
     }
 }

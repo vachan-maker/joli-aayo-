@@ -11,9 +11,9 @@ class ApplicationPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user, Application $application): bool
     {
-        return true;
+        return $user->id === $application->user_id;
     }
 
     /**
