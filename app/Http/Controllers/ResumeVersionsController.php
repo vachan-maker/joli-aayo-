@@ -14,7 +14,7 @@ class ResumeVersionsController extends Controller
     public function index()
     {
         $resumeVersion = ResumeVersion::all();   
-        return view('resumeIndex',compact('resumeVersion'));
+        return view('resumeIndex',compact('resume'));
         
     }
 
@@ -47,15 +47,15 @@ class ResumeVersionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ResumeVersion $resumeVersion)
+    public function show(ResumeVersion $resume)
     {
-        //
+        return view('resumeShow',compact('resume'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ResumeVersion $resumeVersion)
+    public function edit(ResumeVersion $resume)
     {
         //
     }
@@ -63,7 +63,7 @@ class ResumeVersionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ResumeVersion $resumeVersion)
+    public function update(Request $request, ResumeVersion $resume)
     {
         //
     }
@@ -71,19 +71,19 @@ class ResumeVersionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ResumeVersion $resumeVersion)
+    public function destroy(ResumeVersion $resume)
     {
         //
     }
 
-    public function download(ResumeVersion $resumeVersion) {
-        if(\Auth::id() === $resumeVersion->user_id) {
-            response()->download(storage_path("app/private/{$resumeVersion->file_path}"));
+    public function download(ResumeVersion $resume) {
+        if(\Auth::id() === $resume->user_id) {
+            return response()->download(storage_path("app/private/{$resume->file_path}"));
         }
     }
-    public function viewResume(ResumeVersion $resumeVersion) {
-                if(\Auth::id() === $resumeVersion->user_id) {
-            response()->file(storage_path("app/private/{$resumeVersion->file_path}"));
+    public function view(ResumeVersion $resume) {
+                if(\Auth::id() === $resume->user_id) {
+            return response()->file(storage_path("app/private/{$resume->file_path}"));
         }
     }
 }

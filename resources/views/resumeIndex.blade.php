@@ -9,13 +9,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($resumeVersion as $resume)
+            @foreach ($resume as $r)
                 <tr>
                     <td>
-                        <a href="{{ route('resume.index',$resume->id) }}">{{ $resume->label }}</a>
+                        <a href="{{ route('resume.show',$r->id) }}">{{ $r->label }}</a>
                     </td>
-                    <td>{{ $resume->label }}</td>
-                    <td>{{ $resume->path }}</td>
+                    <td>{{ $r->label }}</td>
+                    <td>{{ $r->path }}</td>
                 </tr>
             @endforeach
         </tbody>
