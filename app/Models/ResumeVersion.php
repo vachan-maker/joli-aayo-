@@ -11,7 +11,8 @@ class ResumeVersion extends Model
         'label',
         'file_path',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'user_id'
     ];
 
     public function manyApplications():HasMany {

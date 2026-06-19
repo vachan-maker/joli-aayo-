@@ -38,7 +38,7 @@ class ResumeVersionsController extends Controller
             ]
         );
         $path = $validated['file']->store('resumes'); //generate path and store it in the storage/app/resumees folder
-        ResumeVersion::create([
+        $request->user()->resumeVersions()->create([
             'label'=> $validated['label'],
             'file_path'=>$path
         ]);

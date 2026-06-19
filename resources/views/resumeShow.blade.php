@@ -5,7 +5,7 @@
         </header>
 
         <section>
-            <iframe src="{{ route('resume.view',$resume ->id)}}" width="100%" height="100%"></iframe>
+            <iframe src="{{ route('resume.view',$resume ->id)}}" width="100%" height=800></iframe>
         </section>
 
         <footer>
