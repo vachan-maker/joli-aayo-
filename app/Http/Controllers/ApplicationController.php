@@ -21,7 +21,7 @@ class ApplicationController extends Controller
 
         // Only view the applications of that logged in user
         $applications = $request->user()->applications()->get();
-        return view('index', compact('applications'));
+        return view('applications.index', compact('applications'));
     }
 
     /**
@@ -32,7 +32,7 @@ class ApplicationController extends Controller
         // 2. Enforce create policy (Pass the class string, not an instance)
         Gate::authorize('create', Application::class);
 
-        return view('create');
+        return view('applications.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class ApplicationController extends Controller
         // 4. Enforce view policy on this specific application instance
         Gate::authorize('view', $application);
 
-        return view('show', compact('application'));
+        return view('applications.show', compact('application'));
     }
 
     /**
@@ -68,7 +68,7 @@ class ApplicationController extends Controller
         // 5. Enforce update policy before showing the edit form
         Gate::authorize('update', $application);
 
-        return view('edit', compact('application'));
+        return view('applications.edit', compact('application'));
     }
 
     /**

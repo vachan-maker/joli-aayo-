@@ -14,7 +14,7 @@ class ResumeVersionsController extends Controller
     public function index(Request $request)
     {
          $resume = $request->user()->resumeVersions()->get();
-        return view('resumeIndex',compact('resume'));
+        return view('resume.index',compact('resume'));
         
     }
 
@@ -23,7 +23,7 @@ class ResumeVersionsController extends Controller
      */
     public function create()
     {
-        return view('resumeCreate');
+        return view('resume.create');
     }
 
     /**
@@ -51,7 +51,7 @@ class ResumeVersionsController extends Controller
      */
     public function show(ResumeVersion $resume)
     {
-        return view('resumeShow',compact('resume'));
+        return view('resume.show',compact('resume'));
     }
 
     /**
