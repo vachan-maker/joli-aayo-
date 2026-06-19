@@ -13,7 +13,8 @@ class ResumeVersionsController extends Controller
      */
     public function index()
     {
-        return view('resumeIndex');
+        $resumeVersion = ResumeVersion::all();   
+        return view('resumeIndex',compact('resumeVersion'));
         
     }
 

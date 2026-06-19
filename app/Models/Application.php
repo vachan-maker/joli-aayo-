@@ -15,7 +15,8 @@ class Application extends Model
         'job_url',
         'email',
         'source',
-        'updated_at'
+        'updated_at',
+        'user_id'
     ];
 
 

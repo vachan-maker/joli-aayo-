@@ -41,7 +41,7 @@ class ApplicationController extends Controller
             ]
         );
 
-        Application::create($validated);
+        $request->user()->applications()->create($validated);
         return redirect()->route('applications.index');
     }
 
