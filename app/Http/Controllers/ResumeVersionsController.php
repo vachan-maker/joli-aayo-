@@ -11,9 +11,9 @@ class ResumeVersionsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $resume = ResumeVersion::all();   
+         $resume = $request->user()->resumeVersions()->get();
         return view('resumeIndex',compact('resume'));
         
     }

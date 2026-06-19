@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('resume',ResumeVersionsController::class);
     Route::get('/profile',[Profile::class,'index']);
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
-    Route::get('/resume/{resume}/download', [ResumeVersionsController::class,'download']);
+    Route::get('/resume/{resume}/download', [ResumeVersionsController::class,'download'])->name('resume.download');
     Route::get('/resume/{resume}/view',[ResumeVersionsController::class,'view'])->name('resume.view');
 });
 

@@ -14,7 +14,9 @@
                 @csrf
                 @method('DELETE')
                 <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this application?')"/>
+                <a href="{{ route('resume.download',$resume) }}"><input type="button" value="Download" class="outline"/></a>
             </form>
+            
         </footer>
         </footer>
     </article>
