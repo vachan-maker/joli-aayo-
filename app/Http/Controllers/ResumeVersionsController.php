@@ -76,7 +76,7 @@ class ResumeVersionsController extends Controller
         //
     }
 
-    public function downloadResume(ResumeVersion $resumeVersion) {
+    public function download(ResumeVersion $resumeVersion) {
         if(\Auth::id() === $resumeVersion->user_id) {
             response()->download(storage_path("app/private/{$resumeVersion->file_path}"));
         }

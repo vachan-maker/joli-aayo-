@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('resume',ResumeVersionsController::class);
     Route::get('/profile',[Profile::class,'index']);
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/resume/{resumeVersion}/download', [ResumeVersionsController::class,'download']);
 });
 
 
