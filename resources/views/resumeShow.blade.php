@@ -9,6 +9,13 @@
         </section>
 
         <footer>
+                    <footer>
+            <form action="{{ route('resume.destroy', $resume->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this application?')"/>
+            </form>
+        </footer>
         </footer>
     </article>
 </x-layout>

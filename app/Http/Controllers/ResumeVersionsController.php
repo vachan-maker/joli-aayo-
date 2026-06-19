@@ -13,7 +13,7 @@ class ResumeVersionsController extends Controller
      */
     public function index()
     {
-        $resumeVersion = ResumeVersion::all();   
+        $resume = ResumeVersion::all();   
         return view('resumeIndex',compact('resume'));
         
     }
@@ -73,7 +73,8 @@ class ResumeVersionsController extends Controller
      */
     public function destroy(ResumeVersion $resume)
     {
-        //
+        $resume->delete();
+        return redirect() -> route('resume.index');
     }
 
     public function download(ResumeVersion $resume) {
