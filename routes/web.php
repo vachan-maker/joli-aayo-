@@ -11,7 +11,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/register',[AuthController::class,'index'])->name('register_account');
 Route::post('/register',[AuthController::class, 'register'])->name('register_account.store');
 Route::get('/login',[AuthController::class,'loginPage'])->name('login.page');
+
+Route::get('/password-reset',[AuthController::class, 'forgotPasswordPage']);
+Route::post('/password-reset',[AuthController::class,'forgotPassword'])->name('reset');
+
+
 Route::post('/login',[AuthController::class,'login'])->name('login');
+
 Route::redirect('/','applications');
 
 //this protects the route so only logged in users can use the page
