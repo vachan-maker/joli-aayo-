@@ -31,8 +31,13 @@ class ApplicationController extends Controller
     {
         // 2. Enforce create policy (Pass the class string, not an instance)
         Gate::authorize('create', Application::class);
+        //get the latest resume versions of the particular user
+        $resume_versions = auth()->user()
+        ->resumeVersions()
+        ->latest()
+        ->get();
 
-        return view('applications.create');
+        return view('applications.create',compact('resume_versions'));
     }
 
     /**

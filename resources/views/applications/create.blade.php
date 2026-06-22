@@ -20,6 +20,12 @@
                 </option>
             @endforeach
         </select>
+        <select name="resume_version_id">
+            <option value="" disabled selected>Select Resume</option>
+            @foreach ($resume_versions as $resume_version)
+                <option value="{{ $resume_version->id }}">{{ $resume_version->label }}</option>
+            @endforeach
+        </select>
         <input type="date" name="date_applied" max="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" />
         <input type="url" name="job_url" placeholder="job-url" />
         <input type="email" name="email" placeholder="email" />
