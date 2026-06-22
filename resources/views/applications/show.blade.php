@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="$application->company_name.' - '.$application->role_title">
     <article>
         <header>
             <h1>{{ $application->company_name }}</h1>
@@ -14,6 +14,14 @@
             <p>
                 <strong>Date Applied:</strong> 
                 <time datetime="{{ $application->date_applied }}">{{ $application->date_applied }}</time>
+            </p>
+                <p>
+                <strong>Resume:</strong> 
+                @if($application->resume_version_id)
+                    <a href="{{ route('resume.show',$application->resume_version_id) }}" target="_blank" rel="noopener noreferrer">{{ $application->resumeVersion->label}}</a>
+                @else
+                    <em>None provided</em>
+                @endif
             </p>
 
             <p>
@@ -37,10 +45,11 @@
                     <em>None provided</em>
                 @endif
             </p>
+
         </section>
 
         <footer>
-            <a href="{{ route('applications.edit', $application) }}">Edit Details</a>
+            <a href="{{ route('applications.edit', $application) }}"><input type="button" value="Edit Details" class="outline"/></a>
             <form action="{{ route('applications.destroy', $application->id) }}" method="post">
                 @csrf
                 @method('DELETE')
