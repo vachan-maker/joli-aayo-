@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Register">
     <h2>Create an Account</h2>
     <article>
         <form action="{{ route('register_account.store') }}" method="POST">

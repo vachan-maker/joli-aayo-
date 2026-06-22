@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Add Resume">
     <form method="POST" enctype="multipart/form-data" action="{{ route('resume.store') }}">
         @if ($errors->any())
         <aside>

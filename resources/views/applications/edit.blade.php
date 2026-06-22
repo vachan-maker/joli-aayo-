@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Edit Application">
             <form action="{{ route('applications.update',$application->id) }}" method="post">
                 @csrf
                 @method('PUT')
