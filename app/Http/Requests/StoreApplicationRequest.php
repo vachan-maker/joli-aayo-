@@ -31,6 +31,7 @@ class StoreApplicationRequest extends FormRequest
             'job_url' => 'nullable|url',
             'email' => 'nullable|email',
             'source' => 'nullable|string|max:255',
+            'resume_version_id'=>'nullable|integer'
         ];
     }
 }

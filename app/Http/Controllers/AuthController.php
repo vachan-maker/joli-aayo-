@@ -50,4 +50,21 @@ class AuthController extends Controller
 
         return redirect()->route('applications.index');
     }
+
+    public function forgotPasswordPage() {
+        return view('reset');
+    }
+
+    public function forgotPassword(Request $request) {
+        $request -> validate([
+            'email' => 'required|email'
+        ]);
+        //check if user exists..halle
+        $user = User::where('email', $request->email)->first();
+        if(!$user) {
+            return back()->withErrors(['email'=>'User Not Found']);
+        }
+
+        return view('resetPassword',compact('user'));
+    }
 }
