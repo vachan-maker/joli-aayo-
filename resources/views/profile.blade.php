@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Profile">
     <article>
         <header>
             {{ auth()->user()->name }}

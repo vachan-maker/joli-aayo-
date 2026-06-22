@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Resumes">
     <h2>Resume Version</h2>
     <table>
         <thead>
