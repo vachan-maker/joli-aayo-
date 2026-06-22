@@ -5,7 +5,7 @@
         </header>
         <section>
             <h3>Applications using this Resume</h3>
-            <ul>
+            <ol>
                 @foreach($resume->applications as $application)
                     <li>
                         <a href="{{ route('applications.show', $application->id) }}">
@@ -15,7 +15,7 @@
                     </a>
                     </li>
                 @endforeach
-            </ul>
+            </ol>
         </section>
         <section>
             <iframe src="{{ route('resume.view', $resume->id)}}" width="100%" height=800></iframe>
