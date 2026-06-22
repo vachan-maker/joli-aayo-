@@ -15,7 +15,7 @@ class ResumeVersion extends Model
         'user_id'
     ];
 
-    public function manyApplications():HasMany {
+    public function applications():HasMany {
         return $this->hasMany(Application::class);
     }
 }

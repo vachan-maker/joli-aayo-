@@ -51,6 +51,7 @@ class ResumeVersionsController extends Controller
      */
     public function show(ResumeVersion $resume)
     {
+        $resume->load('applications');
         return view('resume.show',compact('resume'));
     }
 
