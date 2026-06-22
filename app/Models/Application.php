@@ -16,8 +16,12 @@ class Application extends Model
         'email',
         'source',
         'updated_at',
-        'user_id'
+        'user_id',
     ];
 
-
+    //this application belongs to one resume version
+    public function resumeVersion()
+    {
+        return $this->belongsTo(ResumeVersion::class);
+    }
 }
