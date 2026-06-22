@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="$application->company_name.' - '.$application->role_title">
     <article>
         <header>
             <h1>{{ $application->company_name }}</h1>
@@ -40,7 +40,7 @@
         </section>
 
         <footer>
-            <a href="{{ route('applications.edit', $application) }}">Edit Details</a>
+            <a href="{{ route('applications.edit', $application) }}"><input type="button" value="Edit Details" class="outline"/></a>
             <form action="{{ route('applications.destroy', $application->id) }}" method="post">
                 @csrf
                 @method('DELETE')
