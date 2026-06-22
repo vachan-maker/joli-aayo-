@@ -17,6 +17,7 @@ class Application extends Model
         'source',
         'updated_at',
         'user_id',
+        'resume_version_id'
     ];
 
     //this application belongs to one resume version
