@@ -73,7 +73,13 @@ class ApplicationController extends Controller
         // 5. Enforce update policy before showing the edit form
         Gate::authorize('update', $application);
 
-        return view('applications.edit', compact('application'));
+                //get the latest resume versions of the particular user
+        $resume_versions = auth()->user()
+        ->resumeVersions()
+        ->latest()
+        ->get();
+
+        return view('applications.edit', compact('application','resume_versions'));
     }
 
     /**
