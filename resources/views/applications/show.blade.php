@@ -15,6 +15,14 @@
                 <strong>Date Applied:</strong> 
                 <time datetime="{{ $application->date_applied }}">{{ $application->date_applied }}</time>
             </p>
+                <p>
+                <strong>Resume:</strong> 
+                @if($application->resume_version_id)
+                    <a href="{{ route('resume.show',$application->resume_version_id) }}" target="_blank" rel="noopener noreferrer">{{ $application->resumeVersion->label}}</a>
+                @else
+                    <em>None provided</em>
+                @endif
+            </p>
 
             <p>
                 <strong>Source:</strong> {{ $application->source ?? 'Not specified' }}
@@ -37,6 +45,7 @@
                     <em>None provided</em>
                 @endif
             </p>
+
         </section>
 
         <footer>
