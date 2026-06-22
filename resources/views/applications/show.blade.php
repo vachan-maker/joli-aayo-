@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="$application->company_name">
     <article>
         <header>
             <h1>{{ $application->company_name }}</h1>

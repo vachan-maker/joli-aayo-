@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Applications">
     <table>
         <thead>
             <tr>

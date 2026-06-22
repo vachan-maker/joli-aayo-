@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :title="$resume->label">
     <article>
         <header>
             <h1>{{ $resume->label }}</h1>

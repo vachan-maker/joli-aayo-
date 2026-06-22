@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Add Application">
     <form action="{{ route('applications.store') }}" method="post">
         @csrf
         @if ($errors->any())
