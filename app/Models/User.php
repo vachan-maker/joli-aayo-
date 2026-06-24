@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Application;
+use App\Models\Friend;
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -37,5 +38,10 @@ class User extends Authenticatable
 
     public function resumeVersions():HasMany {
         return $this->hasMany(ResumeVersion::class);
+    }
+
+    // a user can have many friends
+    public function friends():HasMany {
+        return $this->hasMany(Friend::class);
     }
 }
