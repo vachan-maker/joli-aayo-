@@ -11,4 +11,8 @@ class Friend extends Model
         'email',
         'name'
     ];
+
+    public function user() {
+        $this->belongsTo(User::class);
+    }
 }
