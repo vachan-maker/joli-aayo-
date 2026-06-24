@@ -13,7 +13,7 @@
 <body style="max-width: 45rem; margin: 0 auto;">
 
     <header>
-        <nav>
+        <nav style="display: flex;flex-direction:row; align-items: center;">
             <a href="{{ route('applications.index') }}">
             <h1>Joli aayo?</h1>
             </a>

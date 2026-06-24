@@ -21,7 +21,7 @@
         <input type="url" name="job_url" placeholder="job-url" value="{{ old('job_url', $application->job_url) }}" />
         <input type="email" name="email" placeholder="email" value="{{ old('email', $application->email) }}" />
         <input type="string" name="source" placeholder="source" value="{{ old('source', $application->source) }}" />
-        <input type="submit" />
+        <input type="submit" value="Apply Changes" />
 
     </form>
 </x-layout>
