@@ -48,8 +48,8 @@
 
         </section>
 
-        <footer>
-            <a href="{{ route('applications.edit', $application) }}" class="w-full"><button class="outline flex-1"/>
+        <footer class="flex flex-col gap-2">
+            <a href="{{ route('applications.edit', $application) }}" class="flex-1"><button style="width: 100%; margin-bottom: 1rem;" class="outline">
                 <i class="fa-solid fa-pencil"></i>
                 Edit Details</button></a>
             <form action="{{ route('applications.destroy', $application->id) }}" method="post">
