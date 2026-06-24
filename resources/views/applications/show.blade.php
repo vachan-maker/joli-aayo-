@@ -49,11 +49,16 @@
         </section>
 
         <footer>
-            <a href="{{ route('applications.edit', $application) }}"><input type="button" value="Edit Details" class="outline"/></a>
+            <a href="{{ route('applications.edit', $application) }}" class="w-full"><button class="outline flex-1"/>
+                <i class="fa-solid fa-pencil"></i>
+                Edit Details</button></a>
             <form action="{{ route('applications.destroy', $application->id) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this application?')"/>
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this application?')">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
             </form>
         </footer>
     </article>
