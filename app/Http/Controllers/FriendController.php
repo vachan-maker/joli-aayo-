@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class FriendController extends Controller
 {
-    public function addFriend(Request $request) {
+    public function add_friend(Request $request) {
         $validated = $request->validate(
             [
                 'email'=> 'required|email',
-                'name'=> 'required|text'
+                'name'=> 'required|string'
             ]
         );
 

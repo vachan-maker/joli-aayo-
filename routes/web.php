@@ -32,4 +32,4 @@ Route::middleware(['auth'])->group(function() {
 });
 
 
-Route::post('/friends/add',[FriendController::class, 'add']) ->name('addFriend');
+Route::post('/friends/add',[FriendController::class, 'add_friend']) ->name('add_friend');
