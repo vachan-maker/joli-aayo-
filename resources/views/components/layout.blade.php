@@ -22,22 +22,26 @@
                     @if (request()->routeIs('applications.*'))
                         <a href="{{ route('applications.create') }}">
                             <i class="fa-solid fa-plus"></i>
-                           
                             Add Application
                         </a>
                     @endif
                     @if (request()->routeIs('resume.*'))
-                        <a href="{{ route('resume.create') }}"> <i class="fa-solid fa-plus"></i>Add Resume</a>
+                        <a href="{{ route('resume.create') }}"><i class="fa-solid fa-plus"></i>Add Resume</a>
                        
                     @endif
                 </li>
                 @auth
                 <li>
-                    <a href="{{ route('resume.index') }}">Resume</a>
+                    <a href="{{ route('resume.index') }}">
+                        <i class="fa-solid fa-file"></i>
+                        Resume</a>
                 </li>
                
                 <li>
-                    <a href="/profile">Profile</a>
+
+                    <a href="/profile">
+                        <i class="fa-solid fa-user"></i>
+                        Profile</a>
                 </li>
                 @endauth
             </ul>
