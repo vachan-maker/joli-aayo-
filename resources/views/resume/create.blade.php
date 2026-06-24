@@ -12,6 +12,6 @@
     @endif
         <input type="text" name="label" placeholder="Label"/>
         <input type="file" accept="application/pdf" name="file"/>
-        <input type="submit"/>
+        <input type="submit" value="Add Resume"/>
     </form>
 </x-layout>
