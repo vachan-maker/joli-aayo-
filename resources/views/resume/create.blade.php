@@ -12,6 +12,6 @@
     @endif
         <input type="text" name="label" placeholder="Label"/>
         <input type="file" accept="application/pdf" name="file"/>
-        <input type="submit"/>
+        <button type="submit"><i class="fa-solid fa-upload"></i>Upload Resume</button>
     </form>
 </x-layout>
