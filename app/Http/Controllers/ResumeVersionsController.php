@@ -34,13 +34,16 @@ class ResumeVersionsController extends Controller
         $validated = $request->validate(
             [
                 'label'=>'string|max:2048|min:5|required',
-                'file' => 'required|file|mimes:pdf|max:4096'
+                'file' => 'required|file|mimes:pdf|max:4096',
+                'hash'  => 'string'
             ]
         );
+        $hash = hash_file('sha256', $request->file('file')->getRealPath());
         $path = $validated['file']->store('resumes'); //generate path and store it in the storage/app/resumees folder
         $request->user()->resumeVersions()->create([
             'label'=> $validated['label'],
-            'file_path'=>$path
+            'file_path'=>$path,
+            'hash'=>$hash
         ]);
 
         return redirect()->route('resume.index');
