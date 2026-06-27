@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     //groups the route with prefix /resume and gives it a name resume.
-    Route::prefix('/resume')->name('resume.')->group(function () {
+    Route::prefix('resume')->name('resume.')->group(function () {
         Route::get('{resume}/download', [ResumeVersionsController::class, 'download'])->name('download');
         Route::get('{resume}/view', [ResumeVersionsController::class, 'view'])->name('view');
     });
