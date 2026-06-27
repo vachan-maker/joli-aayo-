@@ -6,35 +6,33 @@ use App\Http\Controllers\Profile;
 use App\Http\Controllers\ResumeVersionsController;
 use Illuminate\Support\Facades\Route;
 
-//laravel will automaticaly create routes
+// laravel will automaticaly create routes
 
+Route::redirect('/', 'applications');
 
-Route::redirect('/','applications');
+// this protects the route so only logged in users can use the page
+Route::middleware(['auth'])->group(function () {
+    Route::resource('applications', ApplicationController::class);
+    Route::resource('resume', ResumeVersionsController::class);
 
-//this protects the route so only logged in users can use the page
-Route::middleware(['auth'])->group(function() {
-    Route::resource('applications',ApplicationController::class);
-    Route::resource('resume',ResumeVersionsController::class);
+    Route::get('/profile', [Profile::class, 'index']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/profile',[Profile::class,'index']);
-    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
-    
-    Route::get('/resume/{resume}/download', [ResumeVersionsController::class,'download'])->name('resume.download');
-    Route::get('/resume/{resume}/view',[ResumeVersionsController::class,'view'])->name('resume.view');
+    //groups the route with prefix /resume and gives it a name resume.
+    Route::prefix('/resume')->name('resume.')->group(function () {
+        Route::get('{resume}/download', [ResumeVersionsController::class, 'download'])->name('download');
+        Route::get('{resume}/view', [ResumeVersionsController::class, 'view'])->name('view');
+    });
 });
 
-Route::middleware(['guest'])->group(function() {
-    Route::get('/login',[AuthController::class,'loginPage'])->name('login.page');
-    Route::post('/login',[AuthController::class,'login'])->name('login');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [AuthController::class, 'loginPage'])->name('login.page');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+    Route::get('/register', [AuthController::class, 'index'])->name('register_account');
+    Route::post('/register', [AuthController::class, 'register'])->name('register_account.store');
 
-    Route::get('/register',[AuthController::class,'index'])->name('register_account');
-    Route::post('/register',[AuthController::class, 'register'])->name('register_account.store');
-
-
-    Route::get('/password-reset',[AuthController::class, 'forgotPasswordPage']);
-    Route::post('/password-reset',[AuthController::class,'forgotPassword'])->name('reset');
-
+    Route::get('/password-reset', [AuthController::class, 'forgotPasswordPage']);
+    Route::post('/password-reset', [AuthController::class, 'forgotPassword'])->name('reset');
 
 });
-
