@@ -8,15 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 //laravel will automaticaly create routes
 
-Route::get('/register',[AuthController::class,'index'])->name('register_account');
-Route::post('/register',[AuthController::class, 'register'])->name('register_account.store');
-Route::get('/login',[AuthController::class,'loginPage'])->name('login.page');
-
-Route::get('/password-reset',[AuthController::class, 'forgotPasswordPage']);
-Route::post('/password-reset',[AuthController::class,'forgotPassword'])->name('reset');
-
-
-Route::post('/login',[AuthController::class,'login'])->name('login');
 
 Route::redirect('/','applications');
 
@@ -24,10 +15,26 @@ Route::redirect('/','applications');
 Route::middleware(['auth'])->group(function() {
     Route::resource('applications',ApplicationController::class);
     Route::resource('resume',ResumeVersionsController::class);
+
     Route::get('/profile',[Profile::class,'index']);
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+    
     Route::get('/resume/{resume}/download', [ResumeVersionsController::class,'download'])->name('resume.download');
     Route::get('/resume/{resume}/view',[ResumeVersionsController::class,'view'])->name('resume.view');
 });
 
+Route::middleware(['guest'])->group(function() {
+    Route::get('/login',[AuthController::class,'loginPage'])->name('login.page');
+    Route::post('/login',[AuthController::class,'login'])->name('login');
+
+
+    Route::get('/register',[AuthController::class,'index'])->name('register_account');
+    Route::post('/register',[AuthController::class, 'register'])->name('register_account.store');
+
+
+    Route::get('/password-reset',[AuthController::class, 'forgotPasswordPage']);
+    Route::post('/password-reset',[AuthController::class,'forgotPassword'])->name('reset');
+
+
+});
 
