@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'loginPage'])->name('login.page');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login')->middleware('throttle:6,1');
 
     Route::get('/register', [AuthController::class, 'index'])->name('register_account');
     Route::post('/register', [AuthController::class, 'register'])->name('register_account.store');
