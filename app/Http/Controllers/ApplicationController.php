@@ -19,8 +19,22 @@ class ApplicationController extends Controller
         // 1. Enforce viewAny policy
         Gate::authorize('viewAny', Application::class);
 
+
+        $allowedColumns = ['created_at','updated_at','company_name','date_applied'];
+        $allowedDirection = ['asc','desc'];
+
+        $sortBy = $request->query('sort_by','date_applied'); //date applied is the default value if no value is specified
+        $sortDirection = $request->query('sort_direction','desc');
+
+        if(!in_array($sortBy, $allowedColumns)) { //if an invalid value is provided then change it
+            $sortBy = 'created_at';
+        }
+        if(!in_array($sortDirection,$allowedDirection)) {
+            $allowedDirection = 'asc';
+        }
+
         // Only view the applications of that logged in user
-        $applications = $request->user()->applications()->orderBy('date_applied','desc')->get();
+        $applications = $request->user()->applications()->orderBy($sortBy,$sortDirection)->get();
         return view('applications.index', compact('applications'));
     }
 
